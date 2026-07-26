@@ -1,11 +1,39 @@
-# talent-match
-talent-match is my inital and first ai project where i am about to build some cv system that uses ai to filter and adjust cv 
+# TalentMatch
 
-first of all i will include some files for this week
+**Talent Match** is an AI-powered CV system that can analyse, filter, and improve CVs based on specific job requirements.
 
-1 : for gemini  api i will upload two files first is firstgeminipromt.py which inculde the simplest form of gemini api usage
-    moregemini.py is more developed  version   where chats are saved and provided as a input  with the message to have better understanding     for  the context 
+The project is currently in its early development stage. Additional features and improvements will be added as development progresses.
 
-2 :the budget (still progressing)
+## Current Files
 
+### 1. Gemini API Examples
 
+Two Python files demonstrate different ways of using the Gemini API.
+
+#### `firstgeminipromt.py`
+
+A basic example of Gemini API usage.
+
+This file:
+
+* Connects to the Gemini API.
+* Sends a single prompt.
+* Prints the generated response.
+
+#### `moregemini.py`
+
+A more advanced version of the Gemini API example.
+
+This file:
+
+* Supports an ongoing conversation with the AI.
+* Saves previous messages in the chat history.
+* Sends the chat history with each new message.
+* Gives the AI more context when generating responses.
+* Continues running until the user enters `exit`.
+
+### 2. Budget Project
+
+The budget feature is still under development.
+
+More files and information will be added as the project progresses.
