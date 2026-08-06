@@ -36,14 +36,84 @@ class Category:
     def __str__(self):
         title = self.name.center(30, "*")
         e = []
+
         for x in self.ledger:
-            c = x["description"].ljust(23)
+            c = x["description"][:23].ljust(23)
             d = f"{x['amount']:.2f}".rjust(7)
             e.append(f"{c}{d}")
+
         ledger_lines = "\n".join(e)
         total_line = f"Total: {self.get_balance():.2f}"
+
         return f"{title}\n{ledger_lines}\n{total_line}"
 
 
 def create_spend_chart(categories):
-    pass
+
+    names = []
+
+    for category in categories:
+        names.append(category.name)
+
+
+    s = []
+
+    total = 0
+
+    for category in categories:
+        for item in category.ledger:
+            if item["amount"] < 0:
+                total += abs(item["amount"])
+
+
+    for category in categories:
+        spent = 0
+
+        for item in category.ledger:
+            if item["amount"] < 0:
+                spent += abs(item["amount"])
+
+        percent = spent / total * 100
+        s.append((percent // 10) * 10)
+
+
+    max_length = 0
+
+    for name in names:
+        if len(name) > max_length:
+            max_length = len(name)
+
+
+    chart = "Percentage spent by category\n"
+
+
+    for perc in range(100, -1, -10):
+        row = []
+
+        for c in s:
+            if perc <= c:
+                row.append("o  ")
+            else:
+                row.append("   ")
+
+        chart += f"{perc:>3}| {''.join(row)}\n"
+
+
+    chart += f"    {'-' * (len(s) * 3 + 1)}\n"
+
+
+    for i in range(max_length):
+        row = "     "
+
+        for name in names:
+            if i < len(name):
+                row += name[i] + "  "
+            else:
+                row += "   "
+
+        chart += row + "\n"
+
+
+    chart = chart.rstrip("\n")
+
+    return chart
